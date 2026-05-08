@@ -1,44 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: var(--color-primary-val);
-  --color-secondary: var(--color-secondary-val);
-  --color-accent: var(--color-accent-val);
+    --color-primary: var(--color-primary-val);
+    --color-secondary: var(--color-secondary-val);
+    --color-accent: var(--color-accent-val);
   
-  --color-background: var(--color-bg-val);
-  --color-foreground: var(--color-text-val);
+    --color-background: var(--color-bg-val);
+    --color-foreground: var(--color-text-val);
 }
 
 /* Default */
 :root, [data-theme="ionian"] {
-  --color-primary-val: #2A52BE;
-  --color-secondary-val: #B0C4DE;
-  --color-accent-val: #B87333;
+    --color-primary-val: #2A52BE;
+    --color-secondary-val: #B0C4DE;
+    --color-accent-val: #B87333;
   
-  --color-bg-val: #F9F9F6;
-  --color-text-val: #1E293B;
+    --color-bg-val: #F9F9F6;
+    --color-text-val: #1E293B;
 }
 
 [data-theme="light"] {
-  --color-primary-val: #2563EB;
-  --color-secondary-val: #E5E7EB;
-  --color-accent-val: #D97706;
-  --color-bg-val: #FFFFFF;
-  --color-text-val: #0F172A;
+    --color-primary-val: #2563EB;
+    --color-secondary-val: #E5E7EB;
+    --color-accent-val: #D97706;
+    --color-bg-val: #FFFFFF;
+    --color-text-val: #0F172A;
 }
 
 [data-theme="dark"] {
-  --color-primary-val: #60A5FA;
-  --color-secondary-val: #475569;
-  --color-accent-val: #FBBF24;
-  --color-bg-val: #0F172A;
-  --color-text-val: #F8FAFC;
+    --color-primary-val: #60A5FA;
+    --color-secondary-val: #475569;
+    --color-accent-val: #FBBF24;
+    --color-bg-val: #0F172A;
+    --color-text-val: #F8FAFC;
 }
 
 @layer base {
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
+    body {
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
 }

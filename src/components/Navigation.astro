@@ -1,0 +1,39 @@
+---
+import { navConfig } from '../constants/navigation';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const lang = Astro.currentLocale || 'id';
+---
+
+<nav class="flex gap-8">
+    {navConfig.map((menu) => (
+        <div class="relative group py-4">
+            {menu.href ? (
+                <a href={getRelativeLocaleUrl(lang, menu.href)} class="font-medium text-foreground hover:text-accent transition-colors">
+                    {menu.titleKey} {/* TODO: Ganti dengan fungsi translate nantinya */}
+                </a>
+            ) : (
+                <span class="font-medium text-foreground/70 cursor-default">
+                    {menu.titleKey}
+                </span>
+            )}
+
+            {menu.subItems && (
+                <div class="absolute top-full left-0 hidden group-hover:block min-w-[200px] bg-background border border-secondary/20 shadow-xl z-50 rounded-b-lg overflow-hidden">
+                    <ul class="flex flex-col">
+                        {menu.subItems.map((sub) => (
+                            <li>
+                                <a 
+                                href={getRelativeLocaleUrl(lang, sub.href)}
+                                class="block px-4 py-3 text-sm hover:bg-secondary/10 hover:text-primary transition-colors"
+                                >
+                                    {sub.labelKey}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </div>
+    ))}
+</nav>

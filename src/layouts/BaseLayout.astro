@@ -1,0 +1,45 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { cn } from '../utils/cn';
+
+interface Props {
+	title: string;
+  	description?: string;
+  	class?: string;
+}
+
+const { 
+  	title, 
+  	description = "Profil Resmi Institut - Keunggulan dalam Tradisi dan Inovasi",
+  	class: className 
+} = Astro.props;
+
+const currentLang = Astro.currentLocale || 'id';
+---
+
+<!doctype html>
+<html lang={currentLang} data-theme="ionian" class="scroll-smooth">
+  	<head>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    	<meta name="generator" content={Astro.generator} />
+    	<meta name="description" content={description} />
+    	<title>{title} | Institut of Vida Salvaje</title>
+
+    	<link rel="stylesheet" href="/src/styles/global.css" />
+  	</head>
+  
+  	<body class="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-accent/30">
+    
+    	<Header />
+
+    	<main id="main-content" class={cn("flex-grow w-full", className)}>
+      		<slot />
+    	</main>
+
+    	<Footer />
+
+  	</body>
+</html>

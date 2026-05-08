@@ -1,0 +1,45 @@
+---
+import { navConfig } from '../constants/navigation';
+const lang = Astro.currentLocale || 'id';
+---
+
+<footer class="bg-secondary/5 border-t border-secondary/20 pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="md:col-span-1">
+            <div class="text-xl font-bold text-primary mb-4">INSTITUT OF VIDA SALVAJE</div>
+            <address class="not-italic text-sm text-foreground/80 space-y-2">
+                <p>Email (Indonesia): ivs.ac.id@gmail.com</p>
+                <p>Email (Global): ivs.ac.gl@gmail.com</p>
+            </address>
+        </div>
+
+        {navConfig.map((menu) => (
+            <div>
+                <h3 class="font-bold text-foreground mb-4 uppercase tracking-wider text-xs">
+                    {menu.titleKey}
+                </h3>
+                <ul class="space-y-2">
+                {menu.subItems ? (
+                    menu.subItems.map((sub) => (
+                    <li>
+                        <a href={sub.href} class="text-sm text-foreground/60 hover:text-accent">
+                        {sub.labelKey}
+                        </a>
+                    </li>
+                    ))
+                ) : (
+                    <li>
+                        <a href={menu.href} class="text-sm text-foreground/60 hover:text-accent">
+                        Buka Halaman
+                        </a>
+                    </li>
+                )}
+                </ul>
+            </div>
+        ))}
+    </div>
+  
+    <div class="max-w-7xl mx-auto px-4 md:px-8 mt-12 pt-8 border-t border-secondary/10 text-center text-xs text-foreground/40">
+        &copy; {new Date().getFullYear()} Institut OF VIDA SALVAJE. All Rights Reserved.
+    </div>
+</footer>

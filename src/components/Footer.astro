@@ -1,6 +1,7 @@
 ---
 import { navConfig } from '../constants/navigation';
 import { cn } from '../utils/cn';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
     class?: string;
@@ -8,6 +9,7 @@ interface Props {
 
 const { class: className } = Astro.props;
 const lang = Astro.currentLocale || 'id';
+const t = useTranslations(lang);
 ---
 
 <footer class={cn("bg-secondary/5 border-t border-secondary/20 pt-16 pb-8 mt-auto", className)}>
@@ -27,7 +29,7 @@ const lang = Astro.currentLocale || 'id';
         {navConfig.map((menu) => (
             <div>
                 <h3 class="font-bold text-foreground mb-6 uppercase tracking-wider text-sm">
-                    {menu.titleKey}
+                    {t(menu.titleKey)}
                 </h3>
                 <ul class="space-y-3">
                     {menu.subItems ? (
@@ -35,7 +37,7 @@ const lang = Astro.currentLocale || 'id';
                             <li>
                                 <a href={sub.href} class="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center gap-2">
                                     <span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>
-                                    {sub.labelKey}
+                                    {t(sub.labelKey)}
                                 </a>
                             </li>
                         ))
@@ -43,7 +45,7 @@ const lang = Astro.currentLocale || 'id';
                         <li>
                             <a href={menu.href} class="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center gap-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>
-                                Buka Halaman
+                                {t('nav.view_page') === 'nav.view_page' ? 'Buka Halaman' : t('nav.view_page')}
                             </a>
                         </li>
                     )}

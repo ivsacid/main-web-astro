@@ -1,0 +1,19 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { languages } from '../i18n/ui';
+
+// Menghapus prefiks bahasa saat ini untuk mendapatkan rute dasar
+const currentPath = Astro.url.pathname.replace(/^\/(en|zh|de|ja|ko)\//, '/');
+---
+
+<div class="language-picker flex gap-3">
+  {Object.entries(languages).map(([langCode, langName]) => (
+    <a 
+      href={getRelativeLocaleUrl(langCode, currentPath)}
+      class="hover:underline text-sm font-medium"
+      title={langName}
+    >
+      {langCode.toUpperCase()}
+    </a>
+  ))}
+</div>

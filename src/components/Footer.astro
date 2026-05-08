@@ -1,45 +1,64 @@
 ---
 import { navConfig } from '../constants/navigation';
+import { cn } from '../utils/cn';
+
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
 const lang = Astro.currentLocale || 'id';
 ---
 
-<footer class="bg-secondary/5 border-t border-secondary/20 pt-12 pb-8">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="md:col-span-1">
-            <div class="text-xl font-bold text-primary mb-4">INSTITUT OF VIDA SALVAJE</div>
-            <address class="not-italic text-sm text-foreground/80 space-y-2">
-                <p>Email (Indonesia): ivs.ac.id@gmail.com</p>
-                <p>Email (Global): ivs.ac.gl@gmail.com</p>
+<footer class={cn("bg-secondary/5 border-t border-secondary/20 pt-16 pb-8 mt-auto", className)}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+    
+        <div class="lg:col-span-2">
+            <div class="text-2xl font-bold text-primary mb-6 tracking-tighter">INSTITUT OF VIDA SALVAJE</div>
+            <address class="not-italic text-sm text-foreground/80 space-y-3 leading-relaxed">
+                <p>Gedung Rektorat, Jl. Marmer Ionia No. 42<br/>Kota Akademika, 12345</p>
+                <p>
+                    <a href="mailto:ivs.ac.id@gmail.com" class="hover:text-primary transition-colors">ivs.ac.id@gmail.com</a><br/>
+                    <a href="mailto:ivs.ac.gl@gmail.com" class="hover:text-primary transition-colors">ivs.ac.gl@gmail.com</a>
+                </p>
             </address>
         </div>
 
         {navConfig.map((menu) => (
             <div>
-                <h3 class="font-bold text-foreground mb-4 uppercase tracking-wider text-xs">
+                <h3 class="font-bold text-foreground mb-6 uppercase tracking-wider text-sm">
                     {menu.titleKey}
                 </h3>
-                <ul class="space-y-2">
-                {menu.subItems ? (
-                    menu.subItems.map((sub) => (
-                    <li>
-                        <a href={sub.href} class="text-sm text-foreground/60 hover:text-accent">
-                        {sub.labelKey}
-                        </a>
-                    </li>
-                    ))
-                ) : (
-                    <li>
-                        <a href={menu.href} class="text-sm text-foreground/60 hover:text-accent">
-                        Buka Halaman
-                        </a>
-                    </li>
-                )}
+                <ul class="space-y-3">
+                    {menu.subItems ? (
+                        menu.subItems.map((sub) => (
+                            <li>
+                                <a href={sub.href} class="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>
+                                    {sub.labelKey}
+                                </a>
+                            </li>
+                        ))
+                    ) : (
+                        <li>
+                            <a href={menu.href} class="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>
+                                Buka Halaman
+                            </a>
+                        </li>
+                    )}
                 </ul>
             </div>
         ))}
     </div>
   
-    <div class="max-w-7xl mx-auto px-4 md:px-8 mt-12 pt-8 border-t border-secondary/10 text-center text-xs text-foreground/40">
-        &copy; {new Date().getFullYear()} Institut OF VIDA SALVAJE. All Rights Reserved.
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-secondary/20 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-sm text-foreground/50">
+            &copy; {new Date().getFullYear()} Institut Of Vida Salvaje. Hak Cipta Dilindungi.
+        </div>
+        <div class="flex gap-4 text-sm text-foreground/50">
+            <a href="/privacy" class="hover:text-primary transition-colors">Kebijakan Privasi</a>
+            <a href="/terms" class="hover:text-primary transition-colors">Syarat & Ketentuan</a>
+        </div>
     </div>
 </footer>
